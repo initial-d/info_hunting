@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="htmlparser.jar"/>
+	<classpathentry kind="lib" path="jdom.jar"/>
+	<classpathentry kind="lib" path="C:/dym/杜一民/infohunting项目汇集/Info Hunting/源程序/info hunting/WebRoot/WEB-INF/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/dym/杜一民/infohunting项目汇集/Info Hunting/源程序/info hunting/WebRoot/WEB-INF/lib/dom4j-full.jar"/>
+	<classpathentry kind="lib" path="C:/dym/杜一民/infohunting项目汇集/Info Hunting/源程序/info hunting/WebRoot/WEB-INF/lib/jdom.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

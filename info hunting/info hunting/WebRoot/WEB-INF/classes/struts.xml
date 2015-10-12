@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+     
+ 
+    <package name="struts2" namespace=""   extends="struts-default">
+   
+        <action name="search"  class="actions.searchAction">
+            <result  name="success" >showsearch.jsp</result>
+             <result  name="error" >index.jsp</result>
+        </action>
+        
+        <action name="reader"  class="actions.read">
+            <result  name="input" >word.jsp</result>
+            <result  name="vedio" >showvedio.jsp</result>
+            <result  name="music" >showmusic.jsp</result>
+            <result  name="ppt" >showppt.jsp</result>
+             <result  name="picture" >pictureShow.jsp</result>
+         </action>
+           
+         <action name="yinyuesearch"  class="actions.Mp3SearchAction">
+            <result  name="success" >showmp3search.jsp</result>
+             <result  name="error" >yinyue.jsp</result>
+        </action> 
+        <action name="wendangsearch"  class="actions.wendangSearchAction">
+            <result  name="success" >showwendangsearch.jsp</result>
+             <result  name="error" >wendang.jsp</result>
+        </action> 
+         <action name="tupiansearch"  class="actions.TupianSearchAction">
+            <result  name="success" >showPicture.jsp</result>
+             <result  name="error" >tupian.jsp</result>
+        </action> 
+         <action name="vediosearch"  class="actions.VedioSearchAction">
+            <result  name="success" >showvediosearch.jsp</result>
+             <result  name="error" >shipin.jsp</result>
+        </action> 
+        <action name="gaojisearch"  class="actions.GaoJiSearch">
+            <result  name="success" >showgaojisearch.jsp</result>
+         </action> 
+         <action name="download"  class="actions.download">
+            <result  name="success"  type="stream">
+              <param name="contentType">application/octet-stream;charset=UTF-8</param>
+              <param name="inputName">inputStream</param>
+              <param name="bufferSize">4096</param>
+              <param name="contentDisposition">attachment;fileName="${fileName}"</param>
+            </result>    
+        </action>
+        <action name="serverSet"  class="actions.serverSet">
+            <result  name="success" >/pages/admin/view/AdminTemp.jsp</result>
+         </action>
+           <!-- 管理员登录/退出 -->
+        <action name="log_*" class="actions.LogInOutAction" method="{1}">            
+            <result name="input">/pages/admin/Login.jsp</result>
+            <result name="login">/pages/admin/view/AdminTemp.jsp</result>
+            <result name="logout">index.jsp</result>
+        </action>   
+         <!-- 用户登录/退出 -->
+        <action name="userLog_*" class="actions.userLogInOutAction" method="{1}">            
+            <result name="input">/userLogin.jsp</result>
+           <result name="login">index.jsp</result>
+            <result name="logout">index.jsp</result>
+        </action>   
+       
+         <!-- 转换上传界面 -->
+        <action name="up" class="actions.addpage">
+            <result>/view/IndexTemp.jsp</result>
+        </action>
+        <action name="delete" class="actions.deletePage">    
+        	<result>/pages/admin/view/AdminTemp.jsp</result>
+        </action>
+        <action name="deleteTime" class="actions.deleteTime">    
+        	<result>/pages/admin/view/AdminTemp.jsp</result>
+        </action>
+         <!-- 前台信息处理 -->
+        <action name="info_*" class="actions.InfoAction" method="{1}">
+            <result>/view/IndexTemp.jsp</result>
+            <result name="input">/view/IndexTemp.jsp</result>
+        </action>      
+        <!-- 用户注册 -->
+        <action name="user_*" class="actions.UserAction" method="{1}">
+            <result>/view/IndexTemp.jsp</result>
+            <result name="input">/view/IndexTemp.jsp</result>
+        </action>  
+        <!-- 文件上传 -->
+        <action name="file_*" class="actions.InfoA" method="{1}">
+            <result>/view/IndexTemp.jsp</result>
+            <result name="input">/view/IndexTemp.jsp</result>
+        </action>                  
+        <!-- 前台信息处理 -->
+        <action name="fileUpload" class="actions.InfoA">
+        	<interceptor-ref name="fileUpload">
+        	<param name="allowedTypes">
+        		image/bmp,image/x-png,image/gif,image/jpeg,image/jpg/,image/pjpeg,video/x-ms-rmvb,video/x-ms-wmv,video/x-ms-avi,video/mpeg,video/mp4,application/pdf,application/vnd.ms-powerpoint,text/plain,application/msword/,audio/mpeg,audio/x-wav,application/vnd.ms-excel
+        	</param>
+        	<param name="maximumSize">10000000000</param>
+        	</interceptor-ref>
+        	<interceptor-ref name="defaultStack"></interceptor-ref>
+            <result>/view/IndexTemp.jsp</result>
+            <result name="input">/view/IndexTemp.jsp</result>
+        </action>               
+        
+        <!-- 后台管理员操作 -->
+        <action name="admin_*" class="actions.AdminAction" method="{1}">
+            <result name="input">/pages/admin/view/AdminTemp.jsp</result>
+            <result>/pages/admin/view/AdminTemp.jsp</result>
+            <result name="checkSuccess" type="redirectAction">
+                <param name="actionName">admin_*</param>
+                <param name="method">ListShow</param>
+            </result>
+            <result name="deleteSuccess">
+                /pages/admin/view/AdminTemp.jsp
+            </result>
+            <result name="setMoneySuccess">/pages/admin/view/AdminTemp.jsp</result>
+            <result name="UnSuccess">/pages/admin/view/AdminTemp.jsp</result>
+            
+        </action>
+        <!-- 删除XML文件 -->
+        <action name="deleteInfo" class="actions.deleteXML">
+        	<result name="success">/pages/delete/ok.jsp</result>
+        	<result name="errors">/pages/delete/succeed.jsp</result>
+        </action> 
+        <!-- 按日期删除XML文件 -->
+        <action name="deleteByTime" class="actions.deleteByTime">
+        	<result name="success">/pages/delete/ok.jsp</result>
+        	<result name="errors">/pages/delete/succeed.jsp</result>
+        </action>  
+        
+         
+         
+      <!-- 后台用户列表操作 -->
+        <action name="userList" class="actions.userList">
+            <result name="success">/pages/admin/view/AdminTemp.jsp</result>
+        	<result name="errors">/pages/admin/view/AdminTemp.jsp</result>
+        </action>
+       
+       <action name="serverS" class="actions.serverS"> 
+      
+            <result name="success">/pages/admin/view/AdminTemp.jsp</result>
+        	<result name="errors">/pages/admin/view/AdminTemp.jsp</result>
+        </action>
+        <action name="serverL" class="actions.returnIP"> 
+      
+            <result name="success">/pages/admin/view/AdminTemp.jsp</result>
+       
+        </action>
+        
+      
+    </package>
+	
+
+    
+
+    <!-- Add packages here -->
+
+</struts>
